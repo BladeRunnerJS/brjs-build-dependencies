@@ -1,0 +1,38 @@
+apply plugin : 'maven'
+
+ext.depVars = {}
+def invalidDepVars = false
+def invalidDepVarsMessage = "Must specify correct properties for the file you are deploying. Required properties are:\n"
+
+['depGroup', 'depVersion', 'depArtifact', 'depExtension', 'depFile'].each 
+{
+	invalidDepVarsMessage += "  -P${it}=...\n"
+	if (!project.hasProperty(it))
+	{
+		invalidDepVars = true
+	}
+	else
+	{
+		depVars[it] = property(it)+""
+	}
+}
+if (invalidDepVars)
+{
+	throw new GradleException(invalidDepVarsMessage)
+}
+
+
+artifacts {
+	archives file: file(depVars['depFile']), name: depVars['depArtifact']
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository ( url: "file://localhost${project.projectDir}/_newRepo" )
+            pom.version = depVars['depVersion']
+            pom.artifactId = depVars['depArtifact']
+            pom.groupId = depVars['depGroup']
+        }
+    }
+}
