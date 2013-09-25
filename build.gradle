@@ -29,10 +29,12 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository ( url: "file://localhost${project.projectDir}/_newRepo" )
+            repository ( url: "file://localhost${project.projectDir}/repo" )
             pom.version = depVars['depVersion']
             pom.artifactId = depVars['depArtifact']
             pom.groupId = depVars['depGroup']
         }
     }
 }
+
+defaultTasks 'uploadArchives'
