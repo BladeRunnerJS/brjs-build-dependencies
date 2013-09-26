@@ -1,29 +1,32 @@
 apply plugin : 'maven'
 
 ext.depVars = {}
-def invalidDepVars = false
-def invalidDepVarsMessage = "Must specify correct properties for the file you are deploying. Required properties are:\n"
 
-['depGroup', 'depVersion', 'depArtifact', 'depExtension', 'depFile'].each 
+def depProperties = ['depGroup', 'depVersion', 'depArtifact', 'depExtension', 'depFile']
+
+def usageMsg = "Usage:  gradle "
+depProperties.each {
+	usageMsg += "-P${it}=... "
+}
+
+depProperties.each 
 {
-	invalidDepVarsMessage += "  -P${it}=...\n"
 	if (!project.hasProperty(it))
 	{
-		invalidDepVars = true
+		throw new GradleException( "A property was missing\n\n"+usageMsg )
 	}
-	else
-	{
-		depVars[it] = property(it)+""
-	}
+	depVars[it] = property(it)+""
 }
-if (invalidDepVars)
+
+def depFile = file(depVars['depFile'])
+if (!depFile.isFile())
 {
-	throw new GradleException(invalidDepVarsMessage)
+	throw new GradleException("${depFile.absolutePath} either does not exist or is not a file (Note: it must exist within the Gradle project dir)")
 }
 
 
 artifacts {
-	archives file: file(depVars['depFile']), name: depVars['depArtifact']
+	archives file: depFile, name: depVars['depArtifact']
 }
 
 uploadArchives {
