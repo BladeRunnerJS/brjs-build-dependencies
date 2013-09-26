@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>db-derby</groupId>
+  <artifactId>db-derby</artifactId>
+  <version>10.9.1.0</version>
+  <versioning>
+    <versions>
+      <version>10.9.1.0</version>
+    </versions>
+    <lastUpdated>20130926105838</lastUpdated>
+  </versioning>
+</metadata>
