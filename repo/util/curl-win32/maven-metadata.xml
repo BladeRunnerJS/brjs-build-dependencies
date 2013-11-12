@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>util</groupId>
-  <artifactId>curl</artifactId>
+  <artifactId>curl-win32</artifactId>
   <version>7.33.0</version>
   <versioning>
     <versions>
       <version>7.33.0</version>
     </versions>
-    <lastUpdated>20131112123110</lastUpdated>
+    <lastUpdated>20131112123340</lastUpdated>
   </versioning>
 </metadata>
