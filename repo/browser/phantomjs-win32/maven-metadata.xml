@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>browser</groupId>
+  <artifactId>phantomjs-win32</artifactId>
+  <version>1.9.7</version>
+  <versioning>
+    <versions>
+      <version>1.9.7</version>
+    </versions>
+    <lastUpdated>20140721103641</lastUpdated>
+  </versioning>
+</metadata>
